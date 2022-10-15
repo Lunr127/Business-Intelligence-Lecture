@@ -17,8 +17,7 @@ def get_max_min_value(martix):
 
 z_dict = {'完美': 1, '优秀': 0.75, '良好': 0.5, '一般': 0.25, '差': 0}
 
-df = pd.read_excel('E:\\大学作业\\大三作业\\商务智能\\商务智能1\\question4\\Student.xlsx',
-                   nrows=5)
+df = pd.read_excel('E:\\大学作业\\大三作业\\商务智能\\HomeWork\\商务智能1\\question4\\Student.xlsx', nrows=5)
 data = np.array(df)
 row_num = data.shape[0]
 column_num = data.shape[1]
@@ -32,12 +31,10 @@ def calculate_diff(array1, array2):
         if array1[index] == np.nan or array2[index] == np.nan:
             continue
         if index in [1, 2, 3, 4, 5]:
-            diff += math.fabs(array1[index] - array2[index]) / (
-                max_value[index - 1] - min_value[index - 1])
+            diff += math.fabs(array1[index] - array2[index]) / (max_value[index - 1] - min_value[index - 1])
             indicator += 1
         if index == 7:
-            diff += math.sqrt(
-                pow(z_dict[array1[index]] - z_dict[array2[index]], 2))
+            diff += math.sqrt(pow(z_dict[array1[index]] - z_dict[array2[index]], 2))
             indicator += 1
         if index in [6, 8]:
             indicator += 1
@@ -60,10 +57,11 @@ def calculate_diff_matrix():
     diff_matrix = np.zeros((row_num, row_num))
     for index1 in range(0, row_num):
         for index2 in range(index1 + 1, row_num):
-            diff_matrix[index2][index1] = calculate_diff(
-                data[index1], data[index2])
+            diff_matrix[index2][index1] = calculate_diff(data[index1], data[index2])
             diff_matrix[index1][index2] = diff_matrix[index2][index1]
     return diff_matrix
 
 
+print("---------------------------------------")
 print(1 - calculate_diff_matrix())
+print("---------------------------------------")

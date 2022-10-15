@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = list(np.random.gamma(2, 3, 1000))
+data = list(np.random.gamma(2, 3, 10000))
 s = pd.Series(data)
 plt.hist(data, 100, density=True, facecolor='g', alpha=0.9)
 plt.show()
